@@ -1,0 +1,41 @@
+.header-container {
+    box-sizing: border-box;
+    padding: 0.5rem;
+    background-color: rgb(91, 75, 75);
+    border-radius: 8px;
+    width: 100%;
+    display: inline-flex;
+    flex-direction: row;
+    gap: 1rem;
+
+
+    a {
+        text-decoration: none;
+
+        p {
+            font-size: calc(0.8em + 0.8vw);
+            margin: 0%;
+
+        }
+    }
+
+
+
+    a.active p {
+        // scale: 110%;
+        text-decoration: underline;
+    }
+
+    .info-auth-container {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: baseline;
+
+        .logout {
+            color: rgb(212, 10, 10);
+            cursor: pointer;
+        }
+    }
+
+
+}
