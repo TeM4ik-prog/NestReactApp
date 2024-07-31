@@ -14,14 +14,13 @@ export const userSlice = createSlice({
       state.isAuth = true;
     },
     logout: (state) => {
-      state.user = null;
       state.isAuth = false;
+      state.user = null;
+
     },
   },
 });
 
 export const { login, logout } = userSlice.actions;
-
-export const selectUser = (state) => state.user;
 
 export default userSlice.reducer;

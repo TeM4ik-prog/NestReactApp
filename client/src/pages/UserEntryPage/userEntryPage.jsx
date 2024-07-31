@@ -41,8 +41,9 @@ export default function UserEntryPage() {
             const data = await AuthService.login({ email, password })
 
             if (data) {
-                setTokenToLocalStorage('token', data.token)
                 dispatch(login(data))
+
+                setTokenToLocalStorage('token', data.token)
 
                 toast.success('You are logged in')
                 navigate('/')

@@ -1,6 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react"
 import { useParams, useSearchParams } from "react-router-dom"
+import { ProductsService } from "../../services/products.service";
+import { toast } from "react-toastify";
+
+import "./DetailedProductInfoPage.scss"
+
 
 export default function DetailedProductInfoPage() {
     const [searchParams] = useSearchParams();
@@ -10,18 +15,20 @@ export default function DetailedProductInfoPage() {
     const [productData, setProductData] = useState('')
 
 
+    useEffect(async () => {
 
+        try {
+            const data = await ProductsService.getDetailedProduct(productId)
+            if (data) {
+                toast.success('Product details got successfully')
+                console.log(data)
+                setProductData(data)
+            }
 
-    useEffect(() => {
-        axios.get(
-            `/api/products/${productId}`, {})
-            .then((response) => {
-                console.log(response.data)
-                setProductData(response.data)
-            })
-            .catch((error) => {
-                console.log(error)
-            });
+        } catch (err) {
+            toast.error(err.response.data.message)
+        }
+
 
     }, [productId])
 
@@ -32,7 +39,7 @@ export default function DetailedProductInfoPage() {
 
 
             {productData ? (
-                <div>
+                <div className="detailed-product-container">
                     <img src={productData.image} />
                     <h2>{productData.name}</h2>
                     <p>{productData.description}</p>
